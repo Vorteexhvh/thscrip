@@ -4,7 +4,36 @@ local LocalPlayer = Players.LocalPlayer
 
 --// CONFIG
 local ESP_ENABLED = true
-local TEAM_CHECK =  false
+local TEAM_CHECK = true
+
+--// GUI
+local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+
+local Frame = Instance.new("Frame", ScreenGui)
+Frame.Size = UDim2.new(0, 220, 0, 120)
+Frame.Position = UDim2.new(0, 20, 0, 100)
+Frame.BackgroundColor3 = Color3.fromRGB(25,25,25)
+Frame.BorderSizePixel = 0
+Frame.Active = true
+Frame.Draggable = true
+
+local Title = Instance.new("TextLabel", Frame)
+Title.Size = UDim2.new(1,0,0,30)
+Title.Text = "ESP TEST (Highlight)"
+Title.TextColor3 = Color3.new(1,1,1)
+Title.BackgroundColor3 = Color3.fromRGB(35,35,35)
+Title.BorderSizePixel = 0
+
+local EspBtn = Instance.new("TextButton", Frame)
+EspBtn.Size = UDim2.new(1,-20,0,30)
+EspBtn.Position = UDim2.new(0,10,0,40)
+EspBtn.Text = "ESP: ON"
+
+local TeamBtn = Instance.new("TextButton", Frame)
+TeamBtn.Size = UDim2.new(1,-20,0,30)
+TeamBtn.Position = UDim2.new(0,10,0,75)
+TeamBtn.Text = "TEAM CHECK: ON"
+
 
 
 --// ESP SYSTEM
@@ -43,7 +72,7 @@ end
 --// UPDATE LOOP
 task.spawn(function()
 	while task.wait(0.5) do
-		for _, player in inpairs(Players:GetPlayers()) do
+		for _, player in ipairs(Players:GetPlayers()) do
 			if player ~= LocalPlayer and player.Character then
 
 				if TEAM_CHECK
